@@ -1,4 +1,5 @@
-// Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
+import { REQUEST_ACRONYMS_SUCCESS, REQUEST_ACRONYMS } from '../actions';
+
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
@@ -6,8 +7,11 @@ const INITIAL_STATE = {
 
 const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case 'ACTION': // NÃO ESQUECER DE ALTERAR ACTION
-    return state;
+  case REQUEST_ACRONYMS:
+    return { ...state };
+  case REQUEST_ACRONYMS_SUCCESS:
+    console.log(action.payload);
+    return { ...state, currencies: action.payload };
   default:
     return state;
   }
