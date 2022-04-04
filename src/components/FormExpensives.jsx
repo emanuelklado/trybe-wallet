@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { thunkGetAcronyms } from '../actions';
 
 const arrayPaymentOptions = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
@@ -57,5 +58,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getCurrencies: () => dispatch(thunkGetAcronyms()),
 });
+
+FormExpensives.propTypes = {
+  getCurrencies: PropTypes.func,
+}.isRequired;
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormExpensives);
