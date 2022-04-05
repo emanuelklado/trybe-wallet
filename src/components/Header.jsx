@@ -3,33 +3,43 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class Header extends Component {
-    sumExpenses = (expenses) => expenses.reduce((acc, current) => acc + current, 0)
+  sumExpenses = (expenses) => {
+    let total = 0;
+    expenses.forEach(({ value, currency, exchangeRates }) => {
+      const exchangeRate = exchangeRates[currency].ask;
+      const convertedValue = (+value * +exchangeRate);
+      total += convertedValue;
+    });
 
-    render() {
-      const { email, expenses } = this.props;
+    return total.toFixed(2);
+  }
 
-      return (
-        <header>
-          <h1>Trybe Wallet</h1>
-          <section>
-            <p data-testid="email-field">
-              Usuário:
-              {email}
-            </p>
-          </section>
-          <section>
-            <p data-testid="total-field">
-              Total:
-              {' '}
-              {this.sumExpenses(expenses)}
-            </p>
-          </section>
-          <section>
-            <p data-testid="header-currency-field">BRL</p>
-          </section>
-        </header>
-      );
-    }
+  render() {
+    const { email, expenses } = this.props;
+    console.log(expenses);
+    console.log(expenses[0]);
+    return (
+      <header>
+        <h1>Trybe Wallet</h1>
+        <section>
+          <p data-testid="email-field">
+            Usuário:
+            {email}
+          </p>
+        </section>
+        <section>
+          {' '}
+          {'Total:'}
+          <p data-testid="total-field">
+            {this.sumExpenses(expenses)}
+          </p>
+        </section>
+        <section>
+          <p data-testid="header-currency-field">BRL</p>
+        </section>
+      </header>
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({
