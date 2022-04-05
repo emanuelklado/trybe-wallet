@@ -16,8 +16,6 @@ class Header extends Component {
 
   render() {
     const { email, expenses } = this.props;
-    console.log(expenses);
-    console.log(expenses[0]);
     return (
       <header>
         <h1>Trybe Wallet</h1>
