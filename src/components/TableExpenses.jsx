@@ -27,10 +27,10 @@ class TableExpenses extends Component {
             const taxRate = +(item.exchangeRates[item.currency].ask);
             const convertedValue = +(item.value * taxRate).toFixed(2);
             const valueItem = (+item.value).toFixed(2);
-            console.log(expenses);
-            console.log(taxRate);
-            console.log(convertedValue);
-            console.log(valueItem);
+            // console.log(expenses);
+            // console.log(taxRate);
+            // console.log(convertedValue);
+            // console.log(valueItem);
             return (
               <tr key={ i }>
                 <td>{item.description}</td>
